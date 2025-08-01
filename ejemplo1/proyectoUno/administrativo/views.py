@@ -9,6 +9,7 @@ from administrativo.models import *
 # importar los formularios de forms.py
 from administrativo.forms import *
 
+
 # Create your views here.
 
 def index(request):
@@ -48,11 +49,11 @@ def obtener_estudiante(request, id):
 def crear_estudiante(request):
     """
     """
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = EstudianteForm(request.POST)
         print(formulario.errors)
         if formulario.is_valid():
-            formulario.save() # se guarda en la base de datos
+            formulario.save()  # se guarda en la base de datos
             return redirect(index)
     else:
         formulario = EstudianteForm()
@@ -65,7 +66,7 @@ def editar_estudiante(request, id):
     """
     """
     estudiante = Estudiante.objects.get(pk=id)
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = EstudianteForm(request.POST, instance=estudiante)
         print(formulario.errors)
         if formulario.is_valid():
@@ -90,7 +91,7 @@ def crear_numero_telefonico(request):
     """
     """
 
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = NumeroTelefonicoForm(request.POST)
         print(formulario.errors)
         if formulario.is_valid():
@@ -107,7 +108,7 @@ def editar_numero_telefonico(request, id):
     """
     """
     telefono = NumeroTelefonico.objects.get(pk=id)
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = NumeroTelefonicoForm(request.POST, instance=telefono)
         print(formulario.errors)
         if formulario.is_valid():
@@ -119,11 +120,12 @@ def editar_numero_telefonico(request, id):
 
     return render(request, 'crearNumeroTelefonico.html', diccionario)
 
+
 def crear_numero_telefonico_estudiante(request, id):
     """
     """
     estudiante = Estudiante.objects.get(pk=id)
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = NumeroTelefonicoEstudianteForm(estudiante, request.POST)
         print(formulario.errors)
         if formulario.is_valid():
